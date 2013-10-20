@@ -2,17 +2,15 @@
 <html ng-app="counterApp">
 <head>
     <title>The Counter App</title>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
     <script type="text/javascript"
             src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
 </head>
 <body>
-    <div ng-controller="counterCtrl">
-        <button id="subtract-btn" ng-click="subtract()">-</button>
-        {{count}}
-        <button id="add-btn" ng-click="add()">+</button>
-
-
-        <script type="text/javascript" src="counter.js"></script>
+    <div ng-controller="pageCtrl">
+        <button id="newCounter-btn" ng-click="newCounter()">Gimme a new counter!</button>
     </div>
+
+    <script type="text/javascript" src="counter.js"></script>
 </body>
 </html>
