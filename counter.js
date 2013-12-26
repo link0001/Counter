@@ -5,21 +5,39 @@
 
 var counterApp = angular.module('counterApp', []);
 
-counterApp.controller('pageCtrl', function($scope){
-    $scope.items=[];
-    $scope.newCounter=function() {
-        $scope.items.push({});
-    };
+counterApp.factory('CountersService', function handler(){
+    var a = [];
+    return { counters: a};
 });
 
-counterApp.controller('counterCtrl', function($scope){
-    $scope.count = 0;
+counterApp.controller('pageCtrl', function handler($scope, CountersService){
+    $scope.items=CountersService.counters;
 
-    $scope.add = function() {
-        $scope.count++;
+    $scope.newCounter=function() {
+        // Push a new counter on array and initialize count to 0
+        CountersService.counters.push(
+            {
+                id : CountersService.counters.length+1,
+                count : 0
+            });
     };
 
-    $scope.subtract = function() {
-        $scope.count--;
+    $scope.removeCounter=function(counter) {
+        // Find and remove counter from array of counters
+        var i = CountersService.counters.indexOf(counter);
+        if(i != -1) {
+            CountersService.counters.splice(i, 1);
+        }
+    }
+});
+
+counterApp.controller('counterCtrl', function handler($scope, CountersService){
+
+    $scope.add = function(counter) {
+        counter.count++;
+    };
+
+    $scope.subtract = function(counter) {
+        counter.count--;
     };
 });
